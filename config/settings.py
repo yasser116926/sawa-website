@@ -140,4 +140,8 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "sawapeace.org",
+    "www.sawapeace.org",
+    ".onrender.com",
+]
