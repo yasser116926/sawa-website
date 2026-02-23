@@ -1,0 +1,586 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>SAWA | Peace & Justice</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        scroll-behavior: smooth;
+        background-color: #f4f6f8;
+        color: #1f2a38;
+      }
+
+      /* NAVBAR */
+      nav {
+        position: fixed;
+        width: 100%;
+        background-color: #1f4e79;
+        padding: 12px 60px;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        height: 49px;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 28px;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      nav a:hover {
+        color: #cde6ff;
+      }
+
+      /* PAGE SECTIONS */
+      section {
+        padding: 120px 80px;
+        min-height: 100vh;
+      }
+
+      .hero {
+        background:
+          linear-gradient(rgba(13, 27, 42, 0.85), rgba(13, 27, 42, 0.85)),
+          url("{% static 'images/about2.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #0d1b2a;
+      }
+
+      .card {
+        background: white;
+        padding: 25px;
+        margin-top: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 6px;
+        max-width: 700px;
+      }
+
+      footer {
+        background-color: #1f4e79;
+        color: white;
+        text-align: center;
+        padding: 30px;
+      }
+      .about-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-top: 40px;
+      }
+
+      .about-gallery img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+
+      .about-gallery img:hover {
+        transform: scale(1.04);
+      }
+      .projects-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-top: 40px;
+      }
+
+      .projects-gallery img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+
+      .projects-gallery img:hover {
+        transform: scale(1.05);
+      }
+      /* Projects: show more button */
+      .show-more-wrap {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .show-more-btn {
+        background: #1f4e79;
+        color: white;
+        border: 0;
+        padding: 12px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .show-more-btn:hover {
+        opacity: 0.92;
+      }
+
+      /* Make project images look clickable */
+      .projects-gallery img {
+        cursor: pointer;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        padding: 40px;
+      }
+
+      .lightbox.open {
+        display: flex;
+      }
+
+      .lightbox img {
+        max-width: 92vw;
+        max-height: 85vh;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 18px;
+        right: 22px;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+        user-select: none;
+        line-height: 1;
+      }
+
+      .research-container {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+
+      .research-container img {
+        width: 350px;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .research-content {
+        max-width: 500px;
+      }
+
+      .download-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 18px;
+        background-color: #1f4e79;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+
+      .download-btn:hover {
+        opacity: 0.9;
+      }
+
+      .events-container {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+
+      .events-container img {
+        width: 350px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      .event-content {
+        max-width: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-left">
+        <img src="{% static 'images/logo.jpg' %}" class="logo" />
+      </div>
+
+      <div class="nav-right">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1>Peace. Justice. Accountability.</h1>
+        <p>Building stronger institutions and empowered communities.</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="section-title">About SAWA</h2>
+      <div class="card">
+        Founded in 2019 as the Sudan Music Research Center and re-registered in
+        Uganda in 2025, SPJ empowers artists and communities impacted by
+        conflict. We advance democratic values, nonviolence, and cultural
+        initiatives that foster reconciliation and protect vulnerable groups.
+      </div>
+      <div class="about-gallery">
+        <img src="{% static 'images/about1.jpg' %}" />
+        <img src="{% static 'images/about2.jpg' %}" />
+        <img src="{% static 'images/about3.jpg' %}" />
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Our Projects</h2>
+      <div class="card">
+        SPJ's projects include artist grants, residencies, capacity-building
+        workshops, trauma recovery through arts, advocacy campaigns, and
+        cross-border cultural collaborations connecting Sudanese and
+        international artists.
+      </div>
+      <div class="card">our previous projects</div>
+      <div class="projects-gallery" id="projectsGallery">
+        <!-- keep ALL your images here exactly like you already did -->
+        <img src="{% static 'images/pic1.jpg' %}" alt="Project photo 1" />
+        <img src="{% static 'images/pic2.jpg' %}" alt="Project photo 2" />
+        <img src="{% static 'images/pic3.jpg' %}" alt="Project photo 3" />
+        <img src="{% static 'images/pic4.jpg' %}" alt="Project photo 4" />
+        <img src="{% static 'images/pic5.jpg' %}" alt="Project photo 5" />
+        <img src="{% static 'images/pic6.jpg' %}" alt="Project photo 6" />
+
+        <!-- the rest (skip 17 and 22) -->
+        <img src="{% static 'images/pic7.jpg' %}" alt="Project photo 7" />
+        <img src="{% static 'images/pic8.jpg' %}" alt="Project photo 8" />
+        <img src="{% static 'images/pic9.jpg' %}" alt="Project photo 9" />
+        <img src="{% static 'images/pic10.jpg' %}" alt="Project photo 10" />
+        <img src="{% static 'images/pic11.jpg' %}" alt="Project photo 11" />
+        <img src="{% static 'images/pic12.jpg' %}" alt="Project photo 12" />
+        <img src="{% static 'images/pic13.jpg' %}" alt="Project photo 13" />
+        <img src="{% static 'images/pic14.jpg' %}" alt="Project photo 14" />
+        <img src="{% static 'images/pic15.jpg' %}" alt="Project photo 15" />
+        <img src="{% static 'images/pic16.jpg' %}" alt="Project photo 16" />
+
+        <img src="{% static 'images/pic18.jpg' %}" alt="Project photo 18" />
+        <img src="{% static 'images/pic19.jpg' %}" alt="Project photo 19" />
+        <img src="{% static 'images/pic20.jpg' %}" alt="Project photo 20" />
+        <img src="{% static 'images/pic21.jpg' %}" alt="Project photo 21" />
+
+        <img src="{% static 'images/pic23.jpg' %}" alt="Project photo 23" />
+        <img src="{% static 'images/pic24.jpg' %}" alt="Project photo 24" />
+        <img src="{% static 'images/pic25.jpg' %}" alt="Project photo 25" />
+        <img src="{% static 'images/pic26.jpg' %}" alt="Project photo 26" />
+        <img src="{% static 'images/pic27.jpg' %}" alt="Project photo 27" />
+        <img src="{% static 'images/pic28.jpg' %}" alt="Project photo 28" />
+        <img src="{% static 'images/pic29.jpg' %}" alt="Project photo 29" />
+        <img src="{% static 'images/pic30.jpg' %}" alt="Project photo 30" />
+        <img src="{% static 'images/pic31.jpg' %}" alt="Project photo 31" />
+        <img src="{% static 'images/pic32.jpg' %}" alt="Project photo 32" />
+        <img src="{% static 'images/pic33.jpg' %}" alt="Project photo 33" />
+        <img src="{% static 'images/pic34.jpg' %}" alt="Project photo 34" />
+        <img src="{% static 'images/pic35.jpg' %}" alt="Project photo 35" />
+        <img src="{% static 'images/pic36.jpg' %}" alt="Project photo 36" />
+      </div>
+
+      <div class="show-more-wrap">
+        <button class="show-more-btn" id="toggleProjectsBtn">Show more</button>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2 class="section-title">Research Unit</h2>
+
+      <div class="research-container">
+        <img src="{% static 'images/hero.jpg' %}" alt="Research Preview" />
+
+        <div class="research-content">
+          <h3>Annual Peace & Justice Report 2026</h3>
+          <p>
+            Field Research for the Preservation and Safeguarding of Sudanese
+            Musical Heritage A Continuing National Initiative Overview The
+            Sudanese Musical Heritage Documentation Project is a national
+            research initiative that has traveled across multiple regions of
+            Sudan, engaging communities in urban areas, rural villages, and
+            displacement camps. Its primary aim is to preserve and safeguard
+            traditional musical practices as an essential component of Sudan’s
+            cultural identity. Geographic Scope and Continuity Since its
+            inception, the project has covered diverse regions in western,
+            eastern, central, and northern Sudan, employing field-based research
+            and audio-visual documentation of traditional musical expressions.
+            Activities were temporarily suspended due to the outbreak of war and
+            the resulting security challenges. Following relocation to Uganda
+            and the regularization of its legal status, the team has resumed
+            operations within a structured institutional framework, maintaining
+            its long-term national vision. Strategic Objectives • Establish a
+            comprehensive national archive of Sudanese traditional music. •
+            Protect endangered elements of intangible cultural heritage. •
+            Promote cultural cohesion as a pathway to social peace. • Develop
+            regional and international partnerships to strengthen preservation
+            efforts. Forward Outlook The project continues as a long-term
+            cultural and research initiative, connecting Sudanese
+            communities—both within the country and in the diaspora—through
+            shared musical memory, and positioning heritage as a platform for
+            dialogue, resilience, and social recovery.
+          </p>
+          <div class="research-content">
+            <h3>
+              Human Rights Violations Against Artists During the Armed Conflict
+              in Sudan
+            </h3>
+            <p>
+              Joint Research Initiative African Centre for Peace and Justice
+              Studies (ACPJS) Sudanese Music Research Center (SMRC) Reporting
+              Period: 15 April 2023 – September 2024 Background Since the
+              outbreak of armed conflict in Sudan on 15 April 2023, the
+              country’s cultural ecosystem has experienced profound disruption.
+              Artists—including musicians, singers, theatre practitioners, and
+              independent cultural professionals—have faced escalating risks
+              amid shrinking civic space and the militarization of public life.
+              Recognizing culture as an essential civilian sphere and a
+              cornerstone of freedom of expression, the African Centre for Peace
+              and Justice Studies, in collaboration with the Sudanese Music
+              Research Center, conducted a documentation-based study to examine
+              patterns of violations affecting civilian artists during the
+              conflict period through September 2024. Scope of the Report The
+              study focuses on: • Documenting violations committed against
+              artists as civilian actors. • Assessing the impact of armed
+              conflict on artistic freedom and cultural production. • Recording
+              cases of threats, harassment, persecution, censorship, and forced
+              displacement affecting cultural workers. • Examining the complex
+              contexts in which some artists aligned with parties to the
+              conflict and the professional and social consequences that
+              followed. Methodology The research employed a qualitative
+              documentation framework that included: • Verified interviews with
+              affected artists inside Sudan and in exile. • Cross-referencing
+              testimonies and secondary documentation for fact validation. •
+              Contextual legal analysis referencing international humanitarian
+              law and standards protecting freedom of expression. • Confidential
+              case documentation with strict safety and ethical safeguards.
+              Limitations The report excludes musicians formally affiliated with
+              military institutions, focusing exclusively on civilian artists
+              and independent cultural professionals. Significance The study
+              contributes to: • Recognizing artists as a vulnerable civilian
+              category during armed conflict. • Advancing dialogue on the
+              protection of cultural actors in wartime. • Strengthening
+              evidence-based advocacy and future accountability mechanisms.
+              Conclusion This report documents a critical phase in Sudan’s
+              cultural history, where artistic spaces shifted from platforms of
+              dialogue and expression to environments of heightened risk.
+              Through systematic documentation, the research underscores the
+              urgent need to safeguard artistic freedom and protect cultural
+              professionals as integral actors in social cohesion and
+              peacebuilding—even amid armed conflict.
+            </p>
+          </div>
+
+          <a
+            href="{% static 'files/research-report.pdf' %}"
+            class="download-btn"
+            target="_blank"
+          >
+            Download Full Report (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events">
+      <h2 class="section-title">Upcoming Events</h2>
+
+      <div class="events-container">
+        <img src="{% static 'images/coming.jpg' %}" alt="Event image" />
+
+        <div class="event-content">
+          <h3>Peacebuilding Conference 2026</h3>
+          <p>
+            Coming Soon Our Children’s Eyes (عيون أطفالنا) From the Album: Sawa
+            Our Children’s Eyes is an upcoming artistic production that reflects
+            the Center’s vision of music as a language of peace, a bridge
+            between cultures, and a living platform for preserving heritage
+            through local languages. Project Highlights • A multilingual song •
+            A culturally diverse, collective production • Featuring artists from
+            Sudan, Kenya, and Uganda • A powerful human choir and shared musical
+            experience Artistic Credits • Lyrics, Composition & Performance:
+            Hamza Castro • Language Editing: Moses Mkambozi • Music Arrangement:
+            Mozaffar Saif Eldin • Illustration: Mohammed Yousif (Mawrada) •
+            Sound Engineering: Ibrahim Ibn Al-Badiya – Ahmed Bayram Vision This
+            work represents a continuation of our commitment to fostering
+            cultural dialogue and creative collaboration across East Africa.
+            Through collective artistry, the project amplifies a human-centered
+            message—reflecting the dreams, resilience, and future of our
+            children. Coming soon on all digital platforms. Follow us and be
+            part of the journey.
+          </p>
+          <p><strong>Date:</strong> Coming Soon</p>
+          <p><strong>Location:</strong> To be announced</p>
+        </div>
+
+        <div class="events-container">
+        <img src="{% static 'images/coming1.jpg' %}" alt="Event image" />
+        <div class="event-content">
+          <h3>🎬 Short Film: “Sudden Shock”</h3>
+          <p>
+            
+
+About the Film
+“Sudden Shock” is a short film that explores the accumulation of hate speech in Sudan from the era of partial independence to the most recent conflicts. The film highlights the social impact of this rhetoric and shows how art has served as a voice of resistance against injustice and racism.
+
+Film Objectives
+	•	Document the effects of hate speech on Sudanese communities.
+	•	Showcase art as a tool for social change and advocacy.
+	•	Encourage community dialogue around peace, tolerance, and coexistence.
+
+Promo Release
+The official promo has been released for the first time. Viewers are invited to share their thoughts and stay tuned for the full film. Your engagement helps amplify the human message of the project.
+
+Upcoming Screening:
+	•	Location: Nairobi
+	•	Date & Time: To be announced soon.
+            
+          </p>
+          <p><strong>Date:</strong> Coming Soon</p>
+          <p><strong>Location:</strong> To be announced</p>
+        
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="card">
+        Connect with SPJ for inquiries, partnerships, or program participation:
+        • Email: sawaspj@protonmail.com • Phone: +256 779345668 • Or fill out
+        our online contact form for a prompt response. We look forward to
+        hearing from you!
+        <br />
+      </div>
+    </section>
+
+    <footer>© 2026 SAWA | Peace & Justice Organization</footer>
+
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-close" id="lightboxClose">✕</div>
+      <img id="lightboxImg" src="" alt="Preview" />
+    </div>
+
+    <script>
+      // SHOW ONLY FIRST 6
+      const gallery = document.getElementById("projectsGallery");
+      const imgs = Array.from(gallery.querySelectorAll("img"));
+      const btn = document.getElementById("toggleProjectsBtn");
+
+      let expanded = false;
+
+      function updateGallery() {
+        imgs.forEach((img, index) => {
+          img.style.display = expanded || index < 6 ? "block" : "none";
+        });
+        btn.textContent = expanded ? "Show less" : "Show more";
+      }
+
+      btn.addEventListener("click", () => {
+        expanded = !expanded;
+        updateGallery();
+
+        // optional: when collapsing, keep user near the projects section
+        if (!expanded) {
+          document
+            .getElementById("projects")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      updateGallery();
+
+      // LIGHTBOX CLICK
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxClose = document.getElementById("lightboxClose");
+
+      imgs.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.add("open");
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightboxImg.src = "";
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+
+      // close when clicking outside the image
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // close with ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+    </script>
+  </body>
+</html>
