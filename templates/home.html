@@ -246,6 +246,53 @@
       .event-content {
         max-width: 500px;
       }
+      
+      .team-section {
+  background-color: #ffffff;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.team-card {
+  background: #f8fafc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+}
+
+.team-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.team-card img[alt="Buthaina Mohamed"] {
+  object-position: center 10%;
+}
+.team-card h4 {
+  margin: 10px 0 5px;
+}
+
+.team-card p {
+  font-size: 14px;
+  color: #555;
+}
+    
+
+      
     </style>
   </head>
 
@@ -262,6 +309,7 @@
         <a href="#research">Research</a>
         <a href="#events">Events</a>
         <a href="#contact">Contact</a>
+        <a href="#team">Team</a>
       </div>
     </nav>
 
@@ -504,6 +552,44 @@ Upcoming Screening:
         
       </div>
     </section>
+
+    <section id="team" class="team-section">
+  <h2 class="section-title">Our Team</h2>
+
+  <div class="team-grid">
+    
+    <div class="team-card">
+      <img src="{% static 'images/zeinab.jpg' %}" alt="Zeinab Salih">
+      <h4>Ms. Zeinab Salih</h4>
+      <p>Executive Director</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{% static 'images/buthaina.jpg' %}" alt="Buthaina Mohamed">
+      <h4>Ms. Buthaina Mohamed</h4>
+      <p>Public Relations Manager</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{% static 'images/hamza.jpg' %}" alt="Hamza Adam">
+      <h4>Mr. Hamza Adam</h4>
+      <p>Programs Manager</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{% static 'images/reema.jpg' %}" alt="Reema Ahmed">
+      <h4>Ms. Reema Ahmed</h4>
+      <p>Finance Manager</p>
+    </div>
+
+    <div class="team-card">
+      <img src="{% static 'images/ahmed.jpg' %}" alt="Ahmed Omar">
+      <h4>Mr. Ahmed Omar</h4>
+      <p>Financial Officer</p>
+    </div>
+
+  </div>
+</section>
 
     <!-- CONTACT -->
     <section id="contact">

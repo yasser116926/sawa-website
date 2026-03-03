@@ -151,5 +151,7 @@ ALLOWED_HOSTS = [
     "sawapeace.org",
     "www.sawapeace.org",
     ".onrender.com",
+    "127.0.0.1",
+    "localhost",
 ]
 
