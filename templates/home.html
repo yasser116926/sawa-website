@@ -3,6 +3,7 @@
 <html>
   <head>
     <title>SAWA | Peace & Justice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
       body {
@@ -291,6 +292,20 @@
   color: #555;
 }
     
+.social-links {
+  margin-bottom: 15px;
+}
+
+.social-links a {
+  color: white;
+  font-size: 24px;
+  margin: 0 12px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #84a98c;
+}
 
       
     </style>
@@ -588,6 +603,12 @@ Upcoming Screening:
       <p>Financial Officer</p>
     </div>
 
+    <div class="team-card">
+      <img src="{% static 'images/mohamed.jpg' %}" alt="Mohamed Saad">
+      <h4>Mr. Mohamed Saad</h4>
+      <p>M&E Coordinator</p>
+    </div>
+
   </div>
 </section>
 
@@ -603,7 +624,27 @@ Upcoming Screening:
       </div>
     </section>
 
-    <footer>© 2026 SAWA | Peace & Justice Organization</footer>
+    <footer>
+
+  <div class="social-links">
+
+    <a href="https://www.facebook.com/share/1GEDFQVEtE/?mibextid=wwXIfr" target="_blank">
+      <i class="fab fa-facebook"></i>
+    </a>
+
+    <a href="https://youtube.com/@sawa-spjc?si=g6bxnoUhW1H__fYA" target="_blank">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://x.com/sawacenterspj?s=21" target="_blank">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+
+  </div>
+
+  <p>© 2026 SAWA | Peace & Justice Organization</p>
+
+</footer>
 
     <div class="lightbox" id="lightbox">
       <div class="lightbox-close" id="lightboxClose">✕</div>
